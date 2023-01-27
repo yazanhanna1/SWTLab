@@ -1,0 +1,15 @@
+package application;
+
+import interfaces.*;
+
+/**
+ * This class contains the CinemaManagmentApplication which acts as the interface between all
+ * components.
+ * 
+ * @author swe.uni-due.de
+ *
+ */
+public class CMApplication implements URCcmds,RCCmds{
+	
+	
+}

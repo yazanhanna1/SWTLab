@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;VR&apos; to &apos;Cinema Management Application&apos;" description="Rename resource &apos;VR&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/VR" name="Cinema Management Application" stamp="1674726404528" updateReferences="true"/>
+</session>

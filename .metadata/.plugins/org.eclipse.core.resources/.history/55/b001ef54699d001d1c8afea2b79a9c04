@@ -1,0 +1,12 @@
+package interfaces;
+
+import java.util.ArrayList;
+
+import dbadapter.CustomerAccount;
+
+public interface ICustomerAccount {
+	public ArrayList<CustomerAccount> getCustomerAccount();
+	
+	public void addCustomerAccount(String email, String Password);
+
+}

@@ -1,0 +1,2 @@
+Integer iD, String title, Integer duration, Timestamp time, Hall assignedHall,
+			Integer availableSeats, Boolean isArchived

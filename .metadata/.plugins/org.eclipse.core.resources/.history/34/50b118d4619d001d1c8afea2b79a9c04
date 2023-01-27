@@ -1,0 +1,25 @@
+package dbadapter;
+
+public class Performance {
+	private Integer ID;
+	private String title;
+	private Integer duration;
+	private TimeData time;
+	private Hall assignedHall;
+	private Integer availableSeats;
+	private Boolean isArchived;
+	
+	public Performance(Integer iD, String title, Integer duration, TimeData time, Hall assignedHall,
+			Integer availableSeats, Boolean isArchived) {
+		super();
+		ID = iD;
+		this.title = title;
+		this.duration = duration;
+		this.time = time;
+		this.assignedHall = assignedHall;
+		this.availableSeats = availableSeats;
+		this.isArchived = isArchived;
+	}
+	
+	
+}

@@ -1,0 +1,9 @@
+package interfaces;
+
+
+
+public interface ICustomerAccount {
+
+	public void addCustomerAccount(String email, String password);
+
+}

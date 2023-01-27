@@ -1,0 +1,5 @@
+package interfaces;
+
+public interface URCCmds {
+	public void forwardRequestRegister(String email, String password);
+}

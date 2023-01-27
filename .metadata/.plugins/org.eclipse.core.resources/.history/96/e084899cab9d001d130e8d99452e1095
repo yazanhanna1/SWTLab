@@ -1,0 +1,75 @@
+package dbadapter;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+
+import interfaces.ICustomerAccount;
+import interfaces.IPerformance;
+
+public class DBFacade implements IPerformance, ICustomerAccount {
+	private static DBFacade instance;
+	
+	/**
+	 * Constructor which loads the corresponding driver for the chosen database type
+	 */
+	private DBFacade() {
+		try {
+			Class.forName("com." + Configuration.getType() + ".jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Implementation of the Singleton pattern.
+	 * 
+	 * @return
+	 */
+	public static DBFacade getInstance() {
+		if (instance == null) {
+			instance = new DBFacade();
+		}
+
+		return instance;
+	}
+	
+	public static void setInstance(DBFacade dbfacade) {
+		instance = dbfacade;
+	}
+	
+	
+	public void addCustomerAccount(String email, String password) {
+		String sqlSelect = "SELECT * from CustomerAccount WHERE email = ?";
+		String sqlInsert = "INSERT INTO CustomerAccount(email,password) VALUES (?,?)";
+		
+		// Add Customer Account into database.
+				try (Connection connection = DriverManager
+						.getConnection(
+								"jdbc:" + Configuration.getType() + "://" + Configuration.getServer() + ":"
+										+ Configuration.getPort() + "/" + Configuration.getDatabase(),
+								Configuration.getUser(), Configuration.getPassword())) {
+
+					try (PreparedStatement ps = connection.prepareStatement(sqlSelect)) {
+						ps.setString(1, email);
+						try (ResultSet rs = ps.executeQuery()){
+							if(rs.equals(null)) {
+								try(PreparedStatement updatePS = connection.prepareStatement(sqlInsert)){
+									updatePS.setString(1, email);
+									updatePS.setString(2, password);
+								}
+							}
+						}
+
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+	}
+}

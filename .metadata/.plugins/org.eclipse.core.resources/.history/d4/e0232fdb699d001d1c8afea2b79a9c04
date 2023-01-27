@@ -1,0 +1,11 @@
+package interfaces;
+
+
+import dbadapter.CustomerAccount;
+
+public interface ICustomerAccount {
+	public CustomerAccount getCustomerAccount();
+	
+	public void addCustomerAccount(String email, String Password);
+
+}
