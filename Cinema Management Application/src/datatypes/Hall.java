@@ -28,6 +28,10 @@ public class Hall {
 		return seatsInRow;
 	}
 	
-	
-	
+	public Boolean equals(Hall hall) {
+		if (this.Nr == hall.Nr && this.row == hall.row && this.seatsInRow == hall.seatsInRow)
+			return true;
+		else 
+			return false;
+	}
 }

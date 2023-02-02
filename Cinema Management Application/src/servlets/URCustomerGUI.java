@@ -44,7 +44,7 @@ public class URCustomerGUI extends HttpServlet {
 			
 			if(ca != null) {
 				try {
-					request.setAttribute("pagetitle", "Register Account");
+					request.setAttribute("pagetitle", "RegisterAccount");
 					request.setAttribute("message", "New Account successfuly stored in the database.");
 					request.getRequestDispatcher("/templates/showConfirmMake.ftl").forward(request, response);
 

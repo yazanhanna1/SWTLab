@@ -1,39 +1,45 @@
 <#include "header.ftl">
 
-<b>Welcome to our little demonstration on the VR Webapp</b><br><br>
+<b>Welcome to our little demonstration on the CinemaManagement Webapp</b><br><br>
 
-<form method="POST" action="staffmembergui?action=insertOffer">
-	<fieldset id="insertoffer">
+<form method="POST" action="staffmembergui?action=insertPerformance">
+	<fieldset id="insertPerformance">
 		<legend>Required Information</legend>
 		<div>
-			<label>Start Time</label>
-			<input type="text" name="startTime" id="datepicker1">
+			<label>Title</label>
+			<input type="text" name="title">
 	    </div>
 
 		<div>
-			<label>End Time</label>
-			<input type="text" name="endTime" id="datepicker2">
+			<label>Duration</label>
+			<input type="text" name="duration">
 	    </div>
 
 		<div>
-			<label>Street</label>
-			<input type="text" name="street">
+			<label>Time</label>
+			<input type="datetime-local" name="time" id="datepicker1">
 	    </div>
 	    
 	    <div>
-			<label>Town</label>
-			<input type="text" name="town">
+			<label>AssignedHall ID</label>
+			<input type="text" name="assignedHall_ID">
+	    </div>
+	    
+	    <div>
+			<label>AssignedHall Rows</label>
+			<input type="text" name="assignedHall_row">
+	    </div>
+	    
+	    <div>
+			<label>AssignedHall SeatsinRow</label>
+			<input type="text" name="assignedHall_seatsInRow">
+	    </div>
+	    
+		<div>
+			<label>Available Seats</label>
+			<input type="text" name="availableSeats">
 	    </div>
 
-		<div>
-			<label>Capacity</label>
-			<input type="text" name="capacity">
-	    </div>
-
-		<div>
-			<label>Fee</label>
-			<input type="text" name="fee">
-	    </div>
 	</fieldset>
 	<button type="submit" id="submit">Submit</button>
 </form>

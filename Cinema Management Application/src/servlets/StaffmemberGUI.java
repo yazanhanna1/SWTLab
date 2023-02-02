@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import application.CMApplication;
-import application.VRApplication;
-import datatypes.AddressData;
 
 /**
  * Contains GUI for staffmember
@@ -53,12 +51,13 @@ public class StaffmemberGUI extends HttpServlet {
 			String title = (String) request.getParameter("title");
 			String duration = (String) request.getParameter("duration");
 			String time = (String) request.getParameter("time");
-			String assignedHall = (String) request.getParameter("assignedHall");
+			String assignedHall_ID = (String) request.getParameter("assignedHall_ID");
+			String assignedHall_row = (String) request.getParameter("assignedHall_row");
+			String assignedHall_seatsInRow = (String) request.getParameter("assignedHall_seatsInRow");
 			String availableSeats = (String) request.getParameter("availableSeats");
-			String isArchived = (String) request.getParameter("isArchived");
 
 			// Call application to insert offer
-			new CMApplication().insertPerformance(startTime, endTime, new AddressData(street, town), capacity, fee);
+			new CMApplication().insertPerformance(title ,duration,time,assignedHall_ID,assignedHall_row,assignedHall_seatsInRow,availableSeats);
 
 			// Dispatch message to template engine
 			try {

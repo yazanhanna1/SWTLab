@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="dbadapter.Performance"/>
     <fullyQualifiedTypeName name="interfaces.IPerformance"/>
     <fullyQualifiedTypeName name="interfaces.ICustomerAccount"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="datatypes.TimeData"/>
     <fullyQualifiedTypeName name="interfaces.RCCmds"/>
     <fullyQualifiedTypeName name="dbadapter.DBFacade"/>
     <fullyQualifiedTypeName name="java.sql.Timestamp"/>
-    <fullyQualifiedTypeName name="datatypes.Hall"/>
+    <fullyQualifiedTypeName name="dbadapter.Performance"/>
     <fullyQualifiedTypeName name="application.CMApplication"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="dbadapter.CustomerAccount"/>
+    <fullyQualifiedTypeName name="datatypes.Hall"/>
 </qualifiedTypeNameHistroy>

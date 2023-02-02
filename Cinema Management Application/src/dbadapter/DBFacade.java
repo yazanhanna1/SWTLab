@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import datatypes.Hall;
@@ -116,5 +117,45 @@ public class DBFacade implements ICustomerAccount, IPerformance {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	/**
+	 * Adds a Performance into the database
+	 * 
+	 * @param title
+	 * @param duration
+	 * @param time
+	 * @param assignedHall
+	 * @param availableSeats
+	 * @param isArchived
+	 * 
+	 */
+	public void insertPerformance(String title ,Integer duration,Timestamp time,Hall assignedHall ,Integer availableSeats) {
+			// Declare SQL query to insert offer.
+			String sqlInsert = "INSERT INTO Performance (title,duration,time,assignedHall_ID,assignedHall_row,assignedHall_seatsInRow,availableSeats,isArchived) VALUES (?,?,?,?,?,?,?,?)";
+			Boolean isArchived = false;
+			// Insert offer into database.
+			try (Connection connection = DriverManager
+					.getConnection(
+							"jdbc:" + Configuration.getType() + "://" + Configuration.getServer() + ":"
+									+ Configuration.getPort() + "/" + Configuration.getDatabase(),
+							Configuration.getUser(), Configuration.getPassword())) {
+
+				try (PreparedStatement ps = connection.prepareStatement(sqlInsert)) {
+					ps.setString(1, title);
+					ps.setInt(2, duration);
+					ps.setTimestamp(3, time);
+					ps.setInt(4, assignedHall.getNr());
+					ps.setInt(5, assignedHall.getRow());
+					ps.setInt(6, assignedHall.getSeatsInRow());
+					ps.setInt(7, availableSeats);
+					ps.setBoolean(8, isArchived);
+					ps.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	}
 }

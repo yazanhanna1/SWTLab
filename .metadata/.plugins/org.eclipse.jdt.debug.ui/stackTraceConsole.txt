@@ -1,2 +1,2 @@
-Integer iD, String title, Integer duration, Timestamp time, Hall assignedHall,
-			Integer availableSeats, Boolean isArchived
+(1, Timestamp.valueOf("2021-01-01 00:00:00"), Timestamp.valueOf("2021-12-31 00:00:00"),
+				new AddressData("Oststr.99", "Duisburg"), 3, 50)

@@ -125,20 +125,20 @@ ul#navigation li:hover ul {
 	display: block;
 }
 
-#insertoffer {
+#insertperformance {
 	width: 70%;
 	padding: 0px;
 	margin: auto;
 	border: 1px #000000 dashed;
 }
 
-#insertoffer label {
+#insertperformance label {
 	display: inline-block;
 	width: 15%;
 	text-align: left;
 }
 
-#insertoffer input {
+#insertperformance input {
 	width: 30%;
 	text-align: left;
 }
