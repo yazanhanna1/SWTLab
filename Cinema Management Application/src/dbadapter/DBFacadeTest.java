@@ -35,7 +35,7 @@ public class DBFacadeTest extends TestCase {
 
 		// Performance object to be tested
 		testPnonArchived = new Performance(100, "TestPerformaceNonArchived", 240, Timestamp.valueOf("2023-12-31 00:00:00"), new Hall(1,4,10), 30, false);
-		testPArchived = new Performance(100, "TestPerformaceArchived", 240, Timestamp.valueOf("2023-12-31 00:00:00"), new Hall(1,4,10), 30, true);
+		testPArchived = new Performance(200, "TestPerformaceArchived", 240, Timestamp.valueOf("2023-12-31 00:00:00"), new Hall(1,4,10), 30, true);
 		testCA = new CustomerAccount("test@test.com","test123");
 		/*ArrayList<CustomerAccount> testAccounts = new ArrayList<CustomerAccount>();
 		testAccounts.add(testCA);*/
@@ -129,6 +129,23 @@ public class DBFacadeTest extends TestCase {
 
 		// Verify return values
 		assertFalse(ps.size() == 0);
+
+	}
+
+
+	/**
+	 * Testing getCustomerAccount with non-empty results.
+	 */
+	@Test
+	public void testGetCustomerAccount() {
+		
+		ArrayList<CustomerAccount> ca = DBFacade.getInstance().getCustomerAccount();
+
+		// Verify return values
+		assertTrue(ca.size() == 1);
+		assertTrue(ca.get(0).getEmail().equals(testCA.getEmail()));
+		assertTrue(ca.get(0).getPassword().equals(testCA.getPassword()));
+		//
 
 	}
 

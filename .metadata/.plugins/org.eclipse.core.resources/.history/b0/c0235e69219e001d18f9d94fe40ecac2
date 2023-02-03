@@ -1,7 +1,0 @@
-package interfaces;
-
-import dbadapter.CustomerAccount;
-
-public interface URCCmds {
-	public void forwardRequestRegister(String email, String password);
-}
