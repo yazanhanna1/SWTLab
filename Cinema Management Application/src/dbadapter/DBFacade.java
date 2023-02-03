@@ -85,13 +85,40 @@ public class DBFacade implements ICustomerAccount, IPerformance {
 				}
 				return cAccount;
 	}
+
+	/**
+	 * Gets the list of CustomerAccounts that are in the database
+	 */
+	public ArrayList<CustomerAccount> getCustomerAccount(){
+		ArrayList<CustomerAccount> result = new ArrayList<CustomerAccount>();
+		String sqlSelect = "SELECT * from CustomerAccount";
+		try (Connection connection = DriverManager
+				.getConnection(
+						"jdbc:" + Configuration.getType() + "://" + Configuration.getServer() + ":"
+								+ Configuration.getPort() + "/" + Configuration.getDatabase(),
+						Configuration.getUser(), Configuration.getPassword())) {
+			try(PreparedStatement ps = connection.prepareStatement(sqlSelect)){
+				try (ResultSet rs = ps.executeQuery()){
+					while(rs.next()) {
+						CustomerAccount ca = new CustomerAccount(rs.getString(1),rs.getString(2));
+						result.add(ca);
+					}
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();			
+				}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 	/**
 	 * Gets the list of Performances that are not archived from the database
 	 */
 	public ArrayList<Performance> getPerformance(){
 		ArrayList<Performance> result = new ArrayList<Performance>();
-		String sqlSelect = "SELECT * from Performance WHERE isArchived = false";
+		String sqlSelect = "SELECT * from Performance WHERE isArchived = false ORDER BY time ASC";
 		try (Connection connection = DriverManager
 				.getConnection(
 						"jdbc:" + Configuration.getType() + "://" + Configuration.getServer() + ":"
@@ -103,12 +130,9 @@ public class DBFacade implements ICustomerAccount, IPerformance {
 					while(rs.next()){
 						Performance p = new Performance(rs.getInt(1),rs.getString(2), rs.getInt(3),rs.getTimestamp(4),
 							new Hall(rs.getInt(5),rs.getInt(6),rs.getInt(7)),rs.getInt(8),rs.getBoolean(9));
-						if(p.getIsArchived() == false) {
-							result.add(p);
-						}
+						result.add(p);
 					}
 				}
-			
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -118,6 +142,7 @@ public class DBFacade implements ICustomerAccount, IPerformance {
 		}
 		return result;
 	}
+	
 	
 	/**
 	 * Adds a Performance into the database

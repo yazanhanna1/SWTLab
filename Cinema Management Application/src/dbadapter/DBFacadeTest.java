@@ -23,7 +23,8 @@ import junit.framework.TestCase;
  */
 public class DBFacadeTest extends TestCase {
 
-	private Performance testP;
+	private Performance testPnonArchived;
+	private Performance testPArchived;
 	private CustomerAccount testCA;
 
 	/**
@@ -33,7 +34,8 @@ public class DBFacadeTest extends TestCase {
 	public void setUp() {
 
 		// Performance object to be tested
-		testP = new Performance(100, "TestPerformaceName", 240, Timestamp.valueOf("2023-12-31 00:00:00"), new Hall(1,4,10), 30, false);
+		testPnonArchived = new Performance(100, "TestPerformaceNonArchived", 240, Timestamp.valueOf("2023-12-31 00:00:00"), new Hall(1,4,10), 30, false);
+		testPArchived = new Performance(100, "TestPerformaceArchived", 240, Timestamp.valueOf("2023-12-31 00:00:00"), new Hall(1,4,10), 30, true);
 		testCA = new CustomerAccount("test@test.com","test123");
 		/*ArrayList<CustomerAccount> testAccounts = new ArrayList<CustomerAccount>();
 		testAccounts.add(testCA);*/
@@ -62,21 +64,33 @@ public class DBFacadeTest extends TestCase {
 				psCreateHolidayOffer.executeUpdate();
 			}
 			try (PreparedStatement psInsertOffer = connection.prepareStatement(sqlInsertP)) {
-				psInsertOffer.setInt(1, testP.getID());
-				psInsertOffer.setString(2, testP.getTitle());
-				psInsertOffer.setInt(3, testP.getDuration());
-				psInsertOffer.setTimestamp(4, testP.getTime());
-				psInsertOffer.setInt(5, testP.getAssignedHall().getNr());
-				psInsertOffer.setInt(6, testP.getAssignedHall().getRow());
-				psInsertOffer.setInt(7, testP.getAssignedHall().getSeatsInRow());
-				psInsertOffer.setInt(8, testP.getAvailableSeats());
-				psInsertOffer.setBoolean(9, testP.getIsArchived());
+				psInsertOffer.setInt(1, testPnonArchived.getID());
+				psInsertOffer.setString(2, testPnonArchived.getTitle());
+				psInsertOffer.setInt(3, testPnonArchived.getDuration());
+				psInsertOffer.setTimestamp(4, testPnonArchived.getTime());
+				psInsertOffer.setInt(5, testPnonArchived.getAssignedHall().getNr());
+				psInsertOffer.setInt(6, testPnonArchived.getAssignedHall().getRow());
+				psInsertOffer.setInt(7, testPnonArchived.getAssignedHall().getSeatsInRow());
+				psInsertOffer.setInt(8, testPnonArchived.getAvailableSeats());
+				psInsertOffer.setBoolean(9, testPnonArchived.getIsArchived());
 				psInsertOffer.executeUpdate();
 			}
-			try (PreparedStatement psInsertBooking = connection.prepareStatement(sqlInsertCA)) {
-				psInsertBooking.setString(1, testCA.getEmail());
-				psInsertBooking.setString(2, testCA.getPassword());
-				psInsertBooking.executeUpdate();
+			try (PreparedStatement psInsertOffer = connection.prepareStatement(sqlInsertP)) {
+				psInsertOffer.setInt(1, testPArchived.getID());
+				psInsertOffer.setString(2, testPArchived.getTitle());
+				psInsertOffer.setInt(3, testPArchived.getDuration());
+				psInsertOffer.setTimestamp(4, testPArchived.getTime());
+				psInsertOffer.setInt(5, testPArchived.getAssignedHall().getNr());
+				psInsertOffer.setInt(6, testPArchived.getAssignedHall().getRow());
+				psInsertOffer.setInt(7, testPArchived.getAssignedHall().getSeatsInRow());
+				psInsertOffer.setInt(8, testPArchived.getAvailableSeats());
+				psInsertOffer.setBoolean(9, testPArchived.getIsArchived());
+				psInsertOffer.executeUpdate();
+			}
+			try (PreparedStatement psInsertCA= connection.prepareStatement(sqlInsertCA)) {
+				psInsertCA.setString(1, testCA.getEmail());
+				psInsertCA.setString(2, testCA.getPassword());
+				psInsertCA.executeUpdate();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -94,13 +108,13 @@ public class DBFacadeTest extends TestCase {
 
 		// Verify return values
 		assertTrue(ps.size() == 1);
-		assertTrue(ps.get(0).getID() == testP.getID());
-		assertTrue(ps.get(0).getTitle().equals(testP.getTitle()));
-		assertTrue(ps.get(0).getDuration().equals(testP.getDuration()));
-		assertTrue(ps.get(0).getTime().equals(testP.getTime()));
-		assertTrue(ps.get(0).getAssignedHall().equals(testP.getAssignedHall()));
-		assertTrue(ps.get(0).getAvailableSeats() == testP.getAvailableSeats());
-		assertTrue(ps.get(0).getIsArchived() == testP.getIsArchived());
+		assertTrue(ps.get(0).getID() == testPnonArchived.getID());
+		assertTrue(ps.get(0).getTitle().equals(testPnonArchived.getTitle()));
+		assertTrue(ps.get(0).getDuration().equals(testPnonArchived.getDuration()));
+		assertTrue(ps.get(0).getTime().equals(testPnonArchived.getTime()));
+		assertTrue(ps.get(0).getAssignedHall().equals(testPnonArchived.getAssignedHall()));
+		assertTrue(ps.get(0).getAvailableSeats() == testPnonArchived.getAvailableSeats());
+		assertTrue(ps.get(0).getIsArchived() == testPnonArchived.getIsArchived());
 		//
 
 	}
