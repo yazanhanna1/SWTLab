@@ -25,7 +25,7 @@ public class RCustomerGUITest {
 	}
 
 	@Test
-	public void testBrowseHolidayOffers() {
+	public void testRegisteredCustomerGUI() {
 		// Start testing for registeredCustomerGUI
 		tester.beginAt("rcustomergui");
 

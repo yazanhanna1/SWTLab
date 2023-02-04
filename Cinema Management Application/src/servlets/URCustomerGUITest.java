@@ -25,8 +25,8 @@ public class URCustomerGUITest {
 	}
 
 	@Test
-	public void testBrowseHolidayOffers() {
-		// Start testing for registeredCustomerGUI
+	public void testUnregisteredCustomerGUI() {
+		// Start testing for UnregisteredCustomerGUI
 		tester.beginAt("urcustomergui");
 
 		// Check all components of the search form
@@ -44,7 +44,7 @@ public class URCustomerGUITest {
 		
 		tester.clickButton("RegisterWebpage");
 
-		//tester.assertTextPresent("New Account successfuly stored in the database.");
+		tester.assertTextPresent("New Account successfuly stored in the database.");
 	}
 
 }
