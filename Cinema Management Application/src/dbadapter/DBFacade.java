@@ -143,6 +143,35 @@ public class DBFacade implements ICustomerAccount, IPerformance {
 		return result;
 	}
 	
+	/**
+	 * Gets the list of Performances that are archived from the database
+	 */
+	public ArrayList<Performance> getArchivedPerformance(){
+		ArrayList<Performance> result = new ArrayList<Performance>();
+		String sqlSelect = "SELECT * from Performance WHERE isArchived = true ORDER BY time ASC";
+		try (Connection connection = DriverManager
+				.getConnection(
+						"jdbc:" + Configuration.getType() + "://" + Configuration.getServer() + ":"
+								+ Configuration.getPort() + "/" + Configuration.getDatabase(),
+						Configuration.getUser(), Configuration.getPassword())) {
+			
+			try (PreparedStatement ps = connection.prepareStatement(sqlSelect)){
+				try(ResultSet rs = ps.executeQuery()){
+					while(rs.next()){
+						Performance p = new Performance(rs.getInt(1),rs.getString(2), rs.getInt(3),rs.getTimestamp(4),
+							new Hall(rs.getInt(5),rs.getInt(6),rs.getInt(7)),rs.getInt(8),rs.getBoolean(9));
+						result.add(p);
+					}
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 	/**
 	 * Adds a Performance into the database

@@ -43,8 +43,10 @@ public class URCustomerGUITest {
 		tester.setTextField("password", "test123");
 		
 		tester.clickButton("RegisterWebpage");
-
-		tester.assertTextPresent("New Account successfuly stored in the database.");
+		
+		//This will fail if run after DBFacadeTest... Since DBFacadeTest will drop the Table of Customer Account
+		//And will fail if run Twice since the account will already exist.
+		tester.assertTextPresent("New Account successfuly stored in the database."); 	
+		
 	}
-
 }

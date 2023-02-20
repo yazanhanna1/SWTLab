@@ -118,6 +118,28 @@ public class DBFacadeTest extends TestCase {
 		//
 
 	}
+	
+	/**
+	 * Testing getArchivedPerformance with non-empty results.
+	 */
+	@Test
+	public void testGetArchivedPerformance() {
+
+
+		ArrayList<Performance> ps = DBFacade.getInstance().getArchivedPerformance();
+
+		// Verify return values
+		assertTrue(ps.size() == 1);
+		assertTrue(ps.get(0).getID().equals(testPArchived.getID()));
+		assertTrue(ps.get(0).getTitle().equals(testPArchived.getTitle()));
+		assertTrue(ps.get(0).getDuration().equals(testPArchived.getDuration()));
+		assertTrue(ps.get(0).getTime().equals(testPArchived.getTime()));
+		assertTrue(ps.get(0).getAssignedHall().equals(testPArchived.getAssignedHall()));
+		assertTrue(ps.get(0).getAvailableSeats() == testPArchived.getAvailableSeats());
+		assertTrue(ps.get(0).getIsArchived() == testPArchived.getIsArchived());
+		//
+
+	}
 
 	/**
 	 * Testing getPerformance with empty result.

@@ -4,11 +4,11 @@
     <fullyQualifiedTypeName name="interfaces.ICustomerAccount"/>
     <fullyQualifiedTypeName name="datatypes.TimeData"/>
     <fullyQualifiedTypeName name="interfaces.RCCmds"/>
-    <fullyQualifiedTypeName name="dbadapter.DBFacade"/>
     <fullyQualifiedTypeName name="java.sql.Timestamp"/>
     <fullyQualifiedTypeName name="dbadapter.Performance"/>
     <fullyQualifiedTypeName name="application.CMApplication"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="dbadapter.CustomerAccount"/>
     <fullyQualifiedTypeName name="datatypes.Hall"/>
+    <fullyQualifiedTypeName name="dbadapter.DBFacade"/>
 </qualifiedTypeNameHistroy>
